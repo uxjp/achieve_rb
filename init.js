@@ -1,54 +1,56 @@
-db.createCollection('supermercado');
+var db = db.getSiblingDB('mysupermarket');
 
-db.supermercado.insertMany([
+db.createCollection('supermarket');
+
+db.supermarket.insertMany([
   {
-    nome: 'Arroz',
-    preco: 5.99,
-    imagem: 'https://exemplo.com/imagem/arroz.jpg'
+    name: 'Rice',
+    price: 5.99,
+    image: 'https://example.com/image/rice.jpg'
   },
   {
-    nome: 'Feijão',
-    preco: 3.49,
-    imagem: 'https://exemplo.com/imagem/feijao.jpg'
+    name: 'Beans',
+    price: 3.49,
+    image: 'https://example.com/image/beans.jpg'
   },
   {
-    nome: 'Leite',
-    preco: 2.99,
-    imagem: 'https://exemplo.com/imagem/leite.jpg'
+    name: 'Milk',
+    price: 2.99,
+    image: 'https://example.com/image/milk.jpg'
   },
   {
-    nome: 'Pão',
-    preco: 2.49,
-    imagem: 'https://exemplo.com/imagem/pao.jpg'
+    name: 'Bread',
+    price: 2.49,
+    image: 'https://example.com/image/bread.jpg'
   },
   {
-    nome: 'Ovos',
-    preco: 4.29,
-    imagem: 'https://exemplo.com/imagem/ovos.jpg'
+    name: 'Eggs',
+    price: 4.29,
+    image: 'https://example.com/image/eggs.jpg'
   },
   {
-    nome: 'Carne Moída',
-    preco: 12.99,
-    imagem: 'https://exemplo.com/imagem/carne.jpg'
+    name: 'Ground Beef',
+    price: 12.99,
+    image: 'https://example.com/image/beef.jpg'
   },
   {
-    nome: 'Cerveja',
-    preco: 7.99,
-    imagem: 'https://exemplo.com/imagem/cerveja.jpg'
+    name: 'Beer',
+    price: 7.99,
+    image: 'https://example.com/image/beer.jpg'
   },
   {
-    nome: 'Macarrão',
-    preco: 1.99,
-    imagem: 'https://exemplo.com/imagem/macarrao.jpg'
+    name: 'Pasta',
+    price: 1.99,
+    image: 'https://example.com/image/pasta.jpg'
   },
   {
-    nome: 'Sabonete',
-    preco: 1.49,
-    imagem: 'https://exemplo.com/imagem/sabonete.jpg'
+    name: 'Soap',
+    price: 1.49,
+    image: 'https://example.com/image/soap.jpg'
   },
   {
-    nome: 'Detergente',
-    preco: 1.29,
-    imagem: 'https://exemplo.com/imagem/detergente.jpg'
+    name: 'Detergent',
+    price: 1.29,
+    image: 'https://example.com/image/detergent.jpg'
   }
 ]);
