@@ -11,4 +11,15 @@ results.each do |doc|
   puts doc
 end
 
+puts "\n> Filtered data\n"
+
+# Define the query criteria
+query = { 'price' => { '$lt' => 2.0 } }
+
+results = collection.find(query)
+
+results.each do |doc|
+  puts doc
+end
+
 client.close
