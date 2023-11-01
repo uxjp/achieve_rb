@@ -1,0 +1,7 @@
+[
+  {"name": "Dijon", "price": 1.99, "image": "image1.jpg"},
+  {"name": "Rose", "price": 2.49, "image": "image2.jpg"},
+  {"name": "Camembert", "price": 3.99, "image": "image3.jpg"},
+  {"name": "Bleu d'auvergne", "price": 4.79, "image": "image4.jpg"},
+  {"name": "Lindt", "price": 5.29, "image": "image5.jpg"}
+]
