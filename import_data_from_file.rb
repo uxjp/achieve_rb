@@ -19,11 +19,7 @@ File.open(file_path, 'r') do |file|
     end
 end
 
-mongo_document = {
-    name: 'Makita',
-    price: 9.99,
-    image: 'www.somelink.com/image_of_new_product.jpg'
-}
+mongo_document = {"name": "Dijon", "price": 1.99, "image": "image1.jpg"}
 
 insertion_result = collection.insert_one(mongo_document)
 
