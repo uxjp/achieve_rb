@@ -19,8 +19,14 @@ File.open(file_path, 'r') do |file|
     end
 end
 
-mongo_document = {"name": "Dijon", "price": 1.99, "image": "image1.jpg"}
+json_data = File.read(file_path)
 
-insertion_result = collection.insert_one(mongo_document)
+# Parse the JSON data
+parsed_data = JSON.parse(json_data)
+
+oobject = parsed_data[1]
+puts JSON.generate(oobject)
+
+insertion_result = collection.insert_one(oobject)
 
 client.close
