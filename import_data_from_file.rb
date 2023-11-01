@@ -10,15 +10,15 @@ if ARGV.empty?
     exit(1)
 end
   
-# Extract the file path from the command line argument
 file_path = ARGV[0]
 
 json_data = File.read(file_path)
 
 parsed_data = JSON.parse(json_data)
 
-oobject = parsed_data[1]
-
-insertion_result = collection.insert_one(oobject)
+parsed_data.each do |object|
+    insertion_result = collection.insert_one(object)
+    puts insertion_result.n if insertion_result.n != 1
+end
 
 client.close
