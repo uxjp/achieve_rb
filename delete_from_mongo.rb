@@ -3,9 +3,14 @@ require 'mongo'
 client = Mongo::Client.new('mongodb://localhost:27017/mysupermarket')
 collection = client[:supermarket]
 
-name_pattern = /(?=.*e)(?=.*g)/i
+name_pattern = /(?=.*e)(?=.*a)/i
 
-query = { 'name' => { '$regex' => name_pattern } }
+query = {
+  '$and' => [
+    { 'name' => { '$regex' => name_pattern } },
+    { 'price' => { '$lt' => 8.0 } }
+  ]
+}
 
 matching_documents = collection.find(query).to_a
 puts "Matching documents: "
