@@ -6,14 +6,25 @@ collection = client[:supermarket]
 query = { 'name' => 'Rice' }
 
 # Define the update operation using the $set operator
-updateOperation =  { '$set' => {'price' => 123.45} }
+update_operation =  { '$set' => {'price' => 1.45} }
 
-result = collection.update_one(query, updateOperation)
+result_from_update_one = collection.update_one(query, update_operation)
 
-if result.matched_count > 0
+if result_from_update_one.matched_count > 0
     puts "Bean updated successfully."
 else
     puts "No documents matched in query."
+end
+
+lower_threshold = 5.0
+lt_query = { 'price' => { '$lt' => lower_threshold } }
+
+result = collection.update_many(lt_query, update_operation)
+
+if result.matched_count > 0
+  puts "#{result.matched_count} documents updated successfully."
+else
+  puts "No documents matched in the query."
 end
 
 client.close
