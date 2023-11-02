@@ -10,5 +10,5 @@ docker run -d -p 27017:27017 \
         $IMAGE_NAME
 
 
-sleep 5 #necessary
-docker exec -it $CONTAINER_NAME mongosh
+#sleep 5 #necessary
+#docker exec -it $CONTAINER_NAME mongosh
