@@ -6,14 +6,18 @@ server.mount_proc '/' do |req, res|
   res.body = "Hello, Ruby HTTP server\n"
 end
 
-server.mount_proc '/product' do |req, res|
-  if req.request_method == 'POST'
-    res.body = "product just hit\n"
-  else
-    res.status = 405
-    res.body = "Method not allowed\n"
+class MyServlet < WEBrick::HTTPServlet::AbstractServlet
+  def do_GET(request, response)
+    params = request.query
+    database = params['database']
+    collection = params['collection']
+
+    response.status = 200
+    response.body = "collection #{database} #{collection}"
   end
 end
+
+server.mount('/products', MyServlet)
 
 trap('INT') { server.shutdown }
 server.start
