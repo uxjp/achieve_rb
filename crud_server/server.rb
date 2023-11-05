@@ -2,6 +2,10 @@ require 'webrick'
 
 server = WEBrick::HTTPServer.new(Port:8000)
 
+dog = 'dog au au'
+
+puts dog
+
 server.mount_proc '/' do |req, res|
   res.body = "Hello, Ruby HTTP server\n"
 end
@@ -12,6 +16,7 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
     database = params['database']
     collection = params['collection']
 
+    puts dog
     response.status = 200
     response.body = "collection #{database} #{collection}"
   end
