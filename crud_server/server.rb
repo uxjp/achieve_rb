@@ -27,14 +27,13 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
 
     results = collection.find()
 
-    puts "\n\n"
-
-    results.each do |doc|
-      puts doc
-    end
-
     response.status = 200
-    response.body = "collection #{database} #{collection_name}"
+    response.body = format_results(results)
+  end
+
+  def format_results(results)
+    format_results = results.map { |doc| doc.to_json }.join("\n")
+    format_results
   end
 end
 
