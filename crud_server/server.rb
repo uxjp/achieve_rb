@@ -21,12 +21,22 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   def do_GET(request, response)
     params = request.query
     collection_name = params['collection']
-    #max_price = params['max_price']
+
+    max_price = params['max_price'].to_f
+
+    puts ">>>>>>"
+    puts max_price
+
+    #max_price = 2.0
+    variable_type = max_price.class
+
+    puts "The variable type is: #{variable_type}"
+    
 
     collection = @client[collection_name]
 
-    if true
-      query = { 'price' => { '$lt' => 2.0 } }
+    if max_price
+      query = { 'price' => { '$lt' => max_price } }
       results = collection.find(query)
     else  
       results = collection.find()
