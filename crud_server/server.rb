@@ -24,15 +24,6 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
 
     max_price = params['max_price'].to_f
 
-    puts ">>>>>>"
-    puts max_price
-
-    #max_price = 2.0
-    variable_type = max_price.class
-
-    puts "The variable type is: #{variable_type}"
-    
-
     collection = @client[collection_name]
 
     if max_price
