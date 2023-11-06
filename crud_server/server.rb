@@ -20,7 +20,6 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
 
   def do_GET(request, response)
     params = request.query
-    database = params['database']
     collection_name = params['collection']
 
     collection = @client[collection_name]

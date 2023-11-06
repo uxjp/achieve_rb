@@ -1,1 +1,1 @@
-curl "localhost:8000/products?database=mysupermarket&collection=supermarket"
+curl "localhost:8000/products?collection=supermarket"
