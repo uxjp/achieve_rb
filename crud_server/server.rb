@@ -21,10 +21,16 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   def do_GET(request, response)
     params = request.query
     collection_name = params['collection']
+    #max_price = params['max_price']
 
     collection = @client[collection_name]
 
-    results = collection.find()
+    if true
+      query = { 'price' => { '$lt' => 2.0 } }
+      results = collection.find(query)
+    else  
+      results = collection.find()
+    end
 
     response.status = 200
     response.body = format_results(results)
