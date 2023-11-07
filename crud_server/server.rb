@@ -38,13 +38,13 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def do_PUT(req, res)
-    #params = req.query
-    #collection_name = params['collection']
+    params = req.query
+    collection_name = params['collection']
     collection_name = 'supermarket'
     collection = @client[collection_name]
 
-    update_operation =  { '$set' => {'price' => 101.00} }
-    lower_threshold = 5.0
+    update_operation =  { '$set' => {'price' => 1.00} }
+    lower_threshold = 200.0
     lt_query = { 'price' => { '$lt' => lower_threshold } }
 
     query_result = collection.update_many(lt_query, update_operation)
