@@ -37,6 +37,10 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
     response.body = format_results(results)
   end
 
+  def do_PUT(req, res)
+    res.body = "HTTP server received a PUT\n"
+  end
+
   def format_results(results)
     format_results = results.map { |doc| doc.to_json }.join("\n")
     format_results
