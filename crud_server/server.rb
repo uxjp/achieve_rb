@@ -17,6 +17,19 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
 
   def do_GET(request, response)
     params = request.query
+
+
+    
+    puts ">>>>>>>>> test \n\n"
+
+    i = 1
+    params.each do |par|
+      puts "#{i}.  #{par}"
+    end
+
+    puts "<<<<<<<<< test \n\n"
+
+
     collection_name = params['collection']
 
     max_price = params['max_price'].to_f
@@ -36,7 +49,21 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
 
   def do_PUT(req, res)
     params = req.query
+
+    puts ">>>>>>>>> test \n\n"
+
+    i = 1
+    params.each do |par|
+      puts "#{i}.  #{par}"
+      i = i + 1
+    end
+
+    puts "<<<<<<<<< test \n\n"
+
     collection_name = params['collection']
+
+    puts "Collection name: #{collection_name}  from class  #{collection_name.class}\n"
+
     collection_name = 'supermarket'
     collection = @client[collection_name]
 

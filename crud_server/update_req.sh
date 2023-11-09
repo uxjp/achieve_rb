@@ -1,3 +1,3 @@
 #!/bin/bash
 
-curl -X PUT localhost:8000/products?collection=supermarket
+curl -X PUT -d collection=supermarket  localhost:8080/products
