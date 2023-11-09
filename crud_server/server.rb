@@ -18,18 +18,6 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   def do_GET(request, response)
     params = request.query
 
-
-    
-    puts ">>>>>>>>> test \n\n"
-
-    i = 1
-    params.each do |par|
-      puts "#{i}.  #{par}"
-    end
-
-    puts "<<<<<<<<< test \n\n"
-
-
     collection_name = params['collection']
 
     max_price = params['max_price'].to_f
@@ -49,27 +37,18 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
 
   def do_PUT(req, res)
     params = req.query
-
-    puts ">>>>>>>>> test \n\n"
-
-    i = 1
-    params.each do |par|
-      puts "#{i}.  #{par}"
-      i = i + 1
-    end
-
-    puts "<<<<<<<<< test \n\n"
-
     collection_name = params['collection']
+    max = params['max']
+    new_price = params['new_price']
 
-    puts "Collection name: #{collection_name}  from class  #{collection_name.class}\n"
+    puts "\nMax  #{max}  class:  #{max.class}\n"
+    puts "\nNew Price #{new_price}  class:  #{new_price.class}\n"
 
-    collection_name = 'supermarket'
-    collection = @client[collection_name]
+    collection = @client[collection_name.to_s]
 
-    update_operation =  { '$set' => {'price' => 1.00} }
-    lower_threshold = 200.0
-    lt_query = { 'price' => { '$lt' => lower_threshold } }
+    update_operation =  { '$set' => {'price' => new_price.to_f } }
+
+    lt_query = { 'price' => { '$lt' => max.to_f } }
 
     query_result = collection.update_many(lt_query, update_operation)
 
