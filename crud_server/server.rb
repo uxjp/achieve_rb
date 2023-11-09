@@ -41,18 +41,12 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
     max = params['max']
     new_price = params['new_price']
 
-    puts "\nMax  #{max}  class:  #{max.class}\n"
-    puts "\nNew Price #{new_price}  class:  #{new_price.class}\n"
-
     collection = @client[collection_name.to_s]
-
     update_operation =  { '$set' => {'price' => new_price.to_f } }
-
     lt_query = { 'price' => { '$lt' => max.to_f } }
 
     query_result = collection.update_many(lt_query, update_operation)
-
-    res.body = "HTTP server received a PUT\n"
+    res.body = "Updated #{query_result.n} entries.\n"
   end
 
   def format_results(results)
