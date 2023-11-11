@@ -8,6 +8,18 @@ server.mount_proc '/' do |req, res|
   res.body = "Hello, Ruby HTTP server\n"
 end
 
+class PatchServlet < WEBrick::HTTPServlet::AbstractServlet
+  def initialize(server)
+    super(server)
+    @client = Mongo::Client.new(['localhost:27017'], database: 'mysupermarket')
+  end
+
+  def do_GET(req, res)
+    puts "\nHello world\n"
+    res.body = "hello there\n"
+  end
+end
+
 class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   def initialize(server)
     super(server)
@@ -56,6 +68,8 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
 end
 
 server.mount('/products', MyServlet)
+
+server.mount('/products/patch', PatchServlet)
 
 trap('INT') { server.shutdown }
 server.start
