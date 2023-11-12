@@ -50,7 +50,9 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def do_DELETE(req, res)
-    puts "delete somthing\n"
+    params = req.query
+    product_name = params['product_name']
+    puts "delete #{product_name}\n"
   end
 
   def do_PUT(req, res)
