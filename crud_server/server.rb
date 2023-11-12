@@ -52,7 +52,14 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   def do_DELETE(req, res)
     params = req.query
     product_name = params['product_name']
-    puts "delete #{product_name}\n"
+
+    collection_name = 'supermarket'
+    collection = @client[collection_name]
+
+    delete_query = { "name" => product_name.to_s }
+
+    query_result = collection.delete_one(delete_query)
+    res.body = "Deleted #{query_result.n} entries\n"
   end
 
   def do_PUT(req, res)
