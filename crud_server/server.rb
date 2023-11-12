@@ -15,6 +15,10 @@ class PatchServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def do_PATCH(req, res)
+    collection = @client["supermarket"]
+    zeroing_price = { '$set' => {'price' => 0.0} }
+    results = collection.update_many( {}, zeroing_price)
+
     puts "req-ed a patch"
   end
 
@@ -79,7 +83,7 @@ end
 
 server.mount('/products', MyServlet)
 
-server.mount('/products/patch', PatchServlet, mongo_client)
+server.mount('/products/patch_all_to_zero', PatchServlet, mongo_client)
 
 trap('INT') { server.shutdown }
 server.start
