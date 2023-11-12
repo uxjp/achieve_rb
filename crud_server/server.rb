@@ -49,6 +49,10 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
     response.body = format_results(results)
   end
 
+  def do_DELETE(req, res)
+    puts "delete somthing\n"
+  end
+
   def do_PUT(req, res)
     params = req.query
     collection_name = params['collection']
