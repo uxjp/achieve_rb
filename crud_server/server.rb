@@ -14,6 +14,10 @@ class PatchServlet < WEBrick::HTTPServlet::AbstractServlet
     @client = mongo_client
   end
 
+  def do_PATCH(req, res)
+    puts "req-ed a patch"
+  end
+
   def do_GET(req, res)
     puts "\nHello world\n"
     puts @mongo_client
