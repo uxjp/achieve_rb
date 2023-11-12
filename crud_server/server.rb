@@ -2,20 +2,22 @@ require 'webrick'
 require 'mongo'
 
 server = WEBrick::HTTPServer.new(Port:8000)
-
+mongo_client = "Client Mongo"
 
 server.mount_proc '/' do |req, res|
   res.body = "Hello, Ruby HTTP server\n"
 end
 
 class PatchServlet < WEBrick::HTTPServlet::AbstractServlet
-  def initialize(server)
+  def initialize(server, mongo_client)
     super(server)
+    @mongo_client = mongo_client
     @client = Mongo::Client.new(['localhost:27017'], database: 'mysupermarket')
   end
 
   def do_GET(req, res)
     puts "\nHello world\n"
+    puts @mongo_client
     res.body = "hello there\n"
   end
 end
@@ -69,7 +71,7 @@ end
 
 server.mount('/products', MyServlet)
 
-server.mount('/products/patch', PatchServlet)
+server.mount('/products/patch', PatchServlet, mongo_client)
 
 trap('INT') { server.shutdown }
 server.start
